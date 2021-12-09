@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&display=swap');
+@import './resets';
+@import './variables';
+/* <<<這種註記才會顯示於css 如果是兩條斜線//只會出現在sass*/
+// <<<兩條斜線註記 只會出現在sass
+
+@function weight($weightName) {
+    @return map-get($fontWeights, $weightName);
+}
+@mixin flexCenter($direction) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
+    gap: 2rem;
+}
+@mixin gingerbread($height, $zindex) {
+    height: $height;
+    position: absolute;
+    z-index: $zindex;
+}
+
+@mixin mobile {
+    @media (max-width: $mobile) {
+        @content;
+    }
+}
+/*---------------------------  ---------------------------*/
+body {
+    background-color:dimgrey;
+    color: $creamClr;
+    font-family: 'Merienda', cursive;
+    font-weight: weight(regular);
+}
+
+.text {
+    @include flexCenter(row);
+    width: 80%;
+    margin: 5% auto;
+    
+    h1 {
+        color: $candyRedClr;
+        font-weight: weight(bold); 
+        &:hover {
+            color: $candyGreenClr;
+        }
+    }
+    @include mobile{
+        flex-direction: column;
+    }
+}
+button {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    padding: .5rem;
+    outline: 3px solid $creamClr;
+    border: 3px dotted $lightBrownClr;
+    border-radius: 50px;
+    background-color: $creamClr;
+    box-shadow: 5px 7px 5px darken($color: dimgrey, $amount: 10%);
+    color: $lightBrownClr;
+    cursor: pointer;
+
+    font-family: 'Merienda', cursive;
+    font-weight: weight(bold);
+    &:hover {
+        color: $darkBrownClr;
+        background-color: darken($color: $creamClr, $amount: 5%);
+    }
+}
+/*--------------------------- gingerbread house ---------------------------*/
+.clock {
+    height: 90vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    #{&}__house {   // #{&}__house =.clock .clock__house
+        @include gingerbread(70%, 3);
+        left: 50%;
+        transform: translateX(-50%);
+        
+    }
+    #{&}__weights {
+        @include gingerbread(50%, 2);
+        display: flex;
+        justify-content: space-between;
+        top: 50%;
+    }
+  
+    #{&}__weightLeft {
+        animation: weightLeftSwing 10s ease-in-out 2s infinite;
+    }
+
+    #{&}__weightRight {
+        animation: weightRightSwing 10s ease infinite;
+    }
+    
+    #{&}__pendulum {
+        @include gingerbread(50%, 1);
+        top: 40%;
+
+        animation-name: swing;
+        animation-duration: 2s;
+        animation-timing-function: cubic-bezier(.5,0,.5,1);
+        animation-iteration-count: infinite;
+        transform-origin: top;
+       
+    }
+    #{&}__bird {
+        @include gingerbread(30vh, 4);
+        top: -18%;
+        transform: scale(0);
+       
+    }
+}
+.cuckoo {
+    transform-origin: bottom;
+    animation: name duration timing-function delay iteration-count direction fill-mode;
+    animation: cuckoo 1.5s ease 1s 1;
+}
+/*--------------------------- clockface ---------------------------*/
+.clock-face {
+    &::after{
+        content: '';
+        display: block;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: $creamClr;
+        position: absolute;
+        top: 42.5%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 6;
+
+        @media (min-height:$small) and (max-height:$mobile) {
+            background-color: red;
+            width: 8px;
+            height: 8px;
+        }
+        @media (max-height:499px) {
+            background-color: aqua;
+            width: 5px;
+            height: 5px;
+            top: 42%;
+        }
+    }      
+}
+.houseGroup {
+    position: relative;
+    width: 100%;
+    background-color: chocolate;
+}
+.hand {
+    width: 10rem;
+    height: 10rem;
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid blue;
+    z-index: 6;
+}
+
+.second-hand::after {
+    content: '';
+    display: block;
+    background-color: $candyRedClr;
+    position: absolute;
+    left: 50%;
+    width: 3px;
+    height: 50%;
+    transform: translateX(-50%);    //rotate(50deg)
+    transform-origin: bottom;
+}
+.min-hand::after {
+    // transform: translateX(-50%) rotate(100deg);    //rotate(50deg)
+    @extend .second-hand::after;
+    background-color: $creamClr;
+    width: 5px;
+    height: 40%;
+    top: 8%;
+}
+.hour-hand::after {
+    // transform: translateX(-50%) rotate(30deg);    //rotate(50deg)
+    @extend .second-hand::after;
+    background-color: $candyGreenClr;
+    width: 6px;
+    height: 20%;
+    top: 30%;
+    // border: 1px dotted $creamClr;
+}
+/*--------------------------- animations ---------------------------*/
+@keyframes swing {
+    0% { transform: rotate(10deg); }
+    50% { transform: rotate(-10deg); }
+    100% { transform: rotate(10deg); }
+}
+@keyframes weightLeftSwing {
+    0% {transform: translateY(0%);}
+    50% {transform: translateY(10%);}
+    100% {transform: translateY(0%);}
+}
+@keyframes weightRightSwing {
+    0% {transform: scaleX(-1) translateY(10%);}
+    50% {transform: scaleX(-1) translateY(0%);}
+    100% {transform: scaleX(-1) translateY(10%);}
+}
+@keyframes cuckoo {
+    0% {transform: scale(0);}
+    20% {transform: scale(1);}
+    35% {transform: scale(1.2);}
+    100% {transform: scale(0);}
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="UTF-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- remove the warning alert in console -->
+	<link rel="shortcut icon" href="#">
+	<!-- my css -->
+	<link rel="stylesheet" href="./style/jenStyle.css">
+  	<title>@Jamjenjot Cuckoo Clock</title>
+</head>
+<body>
+	<!-- <div class="clock">
+		<div class="clock-face">
+		  	<div class="hand hour-hand"></div>
+		  	<div class="hand min-hand"></div>
+		  	<div class="hand second-hand"></div>
+		</div>
+	</div> -->
+
+	<div class="text">
+		<h1>Christmas is Coming</h1>
+		<div>According to Wikipedia, a cuckoo clock is, typically, a pendulum clock that strikes the hours with a sound like a common cuckoo call and has an automated cuckoo bird that moves with each note. Some move their wings and open and close their beaks while leaning forwards, whereas others have only the bird's body leaning forward. The mechanism to produce the cuckoo call has been in use since the middle of the 1700s and has remained almost without variation.</div>
+		<div>It is unknown who invented the cuckoo clock and where the first one was made. It is thought that much of its development and evolution was made in the Black Forest area in southwestern Germany (in the modern state of Baden-Württemberg), the region where the cuckoo clock was popularized. These clocks were exported to the rest of the world from the mid-1850s on. Today, the cuckoo clock is one of the favourite souvenirs of travellers in Germany, Switzerland, Austria, and northeastern France. It has become a cultural icon of Germany.</div>
+	</div>
+	<div class="clock">
+		<button>Cuckoo!</button>
+		<div class="houseGroup">
+			<div class="clock-face">
+				<div class="hand second-hand"></div>
+				<div class="hand min-hand"></div>
+				<div class="hand hour-hand"></div>
+			</div>
+			<img class="clock__house" src="./img/gingerbread house-01.svg" alt="">
+		</div>
+		<div class="clock__weights">
+			<img class="clock__weightLeft" src="./img/gingerbread house-02.svg" alt="">
+			<img class="clock__weightRight" src="./img/gingerbread house-02.svg" alt="">
+		</div>
+		<img class="clock__pendulum" src="./img/gingerbread house-03.svg" alt="">
+		<img class="clock__bird" src="./img/gingerbread house-04.svg" alt="">
+	</div>
+	<script>
+		;(function(){
+			
+			let hour = document.querySelector(".hour-hand");
+			let min = document.querySelector(".min-hand");
+			let second = document.querySelector(".second-hand");
+			// hour.style.transform = "translateX(-50%) rotate(252deg)";
+			// hour.style.transformOrigin = "top";
+			// element.style {
+    		// 	transform: translateX(-50%) rotate(252deg);
+    		// 	transform-origin: top;
+			// }
+
+
+			let btn = document.querySelector("button");
+			let bird = document.querySelector(".clock__bird");
+			// 鳥只能姑姑一次 咦不掉class
+			btn.addEventListener("click", cuckoo);
+
+			function cuckoo(){
+				//bird pop out
+				bird.classList.add("cuckoo");
+				console.log(this);
+
+				//play cuckoo sound
+				let audio = new Audio("./Cuckoo Clock-SoundBible.com-1776874523.mp3");
+				audio.volume = 0.1;
+				setTimeout(() => {
+					audio.play();
+				}, 800);
+			}
+		
+		
+		
+		})()
+	</script>
+</body>
+</html>
