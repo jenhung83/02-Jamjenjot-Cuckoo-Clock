@@ -36,13 +36,13 @@ body {
   margin: 5% auto;
 }
 
+.text:hover h1 {
+  color: #4ba054;
+}
+
 .text h1 {
   color: #de5562;
   font-weight: 700;
-}
-
-.text h1:hover {
-  color: #4ba054;
 }
 
 @media (max-width: 800px) {

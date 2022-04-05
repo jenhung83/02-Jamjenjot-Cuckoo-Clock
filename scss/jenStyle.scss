@@ -38,13 +38,14 @@ body {
     @include flexCenter(row);
     width: 80%;
     margin: 5% auto;
-
+    &:hover {
+        h1 {
+            color: $candyGreenClr;
+        }
+    }
     h1 {
         color: $candyRedClr;
         font-weight: weight(bold);
-        &:hover {
-            color: $candyGreenClr;
-        }
     }
     @include mobile {
         flex-direction: column;

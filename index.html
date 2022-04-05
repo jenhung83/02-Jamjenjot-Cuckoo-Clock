@@ -89,15 +89,15 @@
                 const minHand = document.querySelector(".min-hand");
                 const hourHand = document.querySelector(".hour-hand");
 
-                let btn = document.querySelector("button");
-                let bird = document.querySelector(".clock__bird");
-                let audio = new Audio(
+                const btn = document.querySelector("button");
+                const bird = document.querySelector(".clock__bird");
+                const audio = new Audio(
                     "./Cuckoo Clock-SoundBible.com-1776874523.mp3"
                 );
                 audio.volume = 0.1;
 
                 // time function
-                const setTime = (e) => {
+                function setTime() {
                     // const now = new Date("December 17, 1995 11:54:39");
                     const now = new Date();
                     const seconds = now.getSeconds();
@@ -121,9 +121,7 @@
                     if (now.getMinutes() === 59 && now.getSeconds() === 59) {
                         cuckoo();
                     }
-                };
-
-                setInterval(setTime, 100);
+                }
 
                 // cuckoo bird function
                 function cuckoo() {
@@ -138,6 +136,8 @@
                     }, 2500);
                 }
 
+                // actions
+                setInterval(setTime, 100);
                 btn.addEventListener("click", function () {
                     cuckoo();
                 });
