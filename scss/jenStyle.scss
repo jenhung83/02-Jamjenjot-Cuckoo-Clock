@@ -55,7 +55,6 @@ button {
     bottom: 2rem;
     left: 2rem;
     padding: 0.5rem;
-    outline: 3px solid $creamClr;
     border: 3px dotted $lightBrownClr;
     border-radius: 50px;
     background-color: $creamClr;
@@ -86,8 +85,15 @@ button {
     #{&}__weights {
         @include gingerbread(50%, 2);
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         top: 50%;
+        left: 0;
+        width: 100%;
+        // left: 50%;
+        // transform: translate(-50%, 0);
+        & > * {
+            width: 25%;
+        }
     }
 
     #{&}__weightLeft {

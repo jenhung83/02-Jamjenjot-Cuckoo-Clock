@@ -59,7 +59,6 @@ button {
   bottom: 2rem;
   left: 2rem;
   padding: 0.5rem;
-  outline: 3px solid #f3efd8;
   border: 3px dotted #896a55;
   border-radius: 50px;
   background-color: #f3efd8;
@@ -104,10 +103,16 @@ button:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   top: 50%;
+  left: 0;
+  width: 100%;
+}
+
+.clock .clock__weights > * {
+  width: 25%;
 }
 
 .clock .clock__weightLeft {
