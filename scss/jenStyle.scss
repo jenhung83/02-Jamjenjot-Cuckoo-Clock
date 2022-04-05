@@ -83,17 +83,12 @@ button {
         transform: translateX(-50%);
     }
     #{&}__weights {
-        @include gingerbread(50%, 2);
+        @include gingerbread(50%, 1);
         display: flex;
         justify-content: center;
         top: 50%;
-        left: 0;
-        width: 100%;
-        // left: 50%;
-        // transform: translate(-50%, 0);
-        & > * {
-            width: 25%;
-        }
+        left: 50%;
+        transform: translate(-50%, 0);
     }
 
     #{&}__weightLeft {
@@ -105,7 +100,7 @@ button {
     }
 
     #{&}__pendulum {
-        @include gingerbread(50%, 1);
+        @include gingerbread(50%, 2);
         top: 40%;
 
         animation-name: swing;
